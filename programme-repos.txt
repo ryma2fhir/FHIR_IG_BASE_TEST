@@ -1,0 +1,16 @@
+# programme-repos.txt
+#
+# List of programme repos to sync into this analysis repo.
+# One repo per line, in the format:  org/repo-name
+#
+# To add a new programme repo:
+#   1. Add the repo name here
+#   2. Go to Actions → "Add programme subtree" → Run workflow
+#      (this only needs to be done once per new repo)
+#
+# After that, all future pushes to that repo's main branch
+# will sync here automatically.
+
+YOUR_ORG/repo-name-1
+YOUR_ORG/repo-name-2
+YOUR_ORG/repo-name-3
