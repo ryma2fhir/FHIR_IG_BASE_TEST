@@ -1,23 +1,23 @@
 # ============================================================
 # PARENT REPO — .github/workflows/sync-subtree.yml
 #
-# Triggered when a child repo merges to main.
-# Checks child-repos.txt to verify the repo is registered,
+# Triggered when a programme repo merges to main.
+# Checks programme-repos.txt to verify the repo is registered,
 # then adds the subtree (first time) or pulls latest (ongoing).
 #
-# To register a new child repo:
-#   1. Add it to child-repos.txt
-#   2. Actions → "Sync child subtree" → Run workflow → enter repo name
+# To register a new programme repo:
+#   1. Add it to programme-repos.txt
+#   2. Actions → "Sync programme subtree" → Run workflow → enter repo name
 #      (this bootstraps it; all future pushes from that repo are automatic)
 #
-# To add/remove repos going forward, only edit child-repos.txt.
+# To add/remove repos going forward, only edit programme-repos.txt.
 # ============================================================
 
-name: Sync child subtree
+name: Sync programme subtree
 
 on:
   repository_dispatch:
-    types: [child-repo-updated]
+    types: [programme-repo-updated]
   workflow_dispatch:
     inputs:
       repo:
@@ -52,14 +52,14 @@ jobs:
           echo "subfolder=children/${REPO_NAME}" >> $GITHUB_OUTPUT
 
       # Prevents arbitrary repos from writing into the parent
-      - name: Check repo is registered in child-repos.txt
+      - name: Check repo is registered in programme-repos.txt
         run: |
           FULL_REPO="${{ steps.resolve.outputs.full_repo }}"
-          if grep -qxF "${FULL_REPO}" child-repos.txt; then
+          if grep -qxF "${FULL_REPO}" programme-repos.txt; then
             echo "${FULL_REPO} is registered"
           else
-            echo "${FULL_REPO} is not listed in child-repos.txt — skipping."
-            echo "   Add it to child-repos.txt then re-run this workflow."
+            echo "${FULL_REPO} is not listed in programme-repos.txt — skipping."
+            echo "   Add it to programme-repos.txt then re-run this workflow."
             exit 1
           fi
 
@@ -74,10 +74,10 @@ jobs:
           REMOTE_URL="https://x-access-token:${GH_TOKEN}@github.com/${FULL_REPO}.git"
           MSG="chore: sync ${SUBFOLDER} [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           if [ -d "${SUBFOLDER}" ]; then
-            echo "📥 Subtree exists — pulling latest changes"
+            echo "Subtree exists — pulling latest changes"
             git subtree pull --prefix="${SUBFOLDER}" "${REMOTE_URL}" main --squash -m "${MSG}"
           else
-            echo "🆕 First time — adding subtree"
+            echo "First time — adding subtree"
             git subtree add --prefix="${SUBFOLDER}" "${REMOTE_URL}" main --squash -m "${MSG}"
           fi
 
