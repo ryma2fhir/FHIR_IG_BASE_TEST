@@ -91,9 +91,10 @@ jobs:
           rm -f "${SUBFOLDER}/package-lock.json"
           rm -f "${SUBFOLDER}/options.json"
           # Add any other files to exclude here
+          
       - name: Push to parent repo
         env:
           GH_TOKEN: ${{ secrets.AGGREGATOR_PAT }}
         run: |
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-          git push origin mainsync_subtree
+          git push origin main
