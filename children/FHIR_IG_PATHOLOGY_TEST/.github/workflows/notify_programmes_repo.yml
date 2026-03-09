@@ -1,0 +1,24 @@
+name: Notify parent repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger parent subtree sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.AGGREGATOR_PAT }}
+          repository: ryma2fhir/FHIR_IG_BASE_TEST
+          event-type: programme-repo-updated
+          client-payload: |
+            {
+              "repo": "${{ github.repository }}",
+              "branch": "${{ github.ref_name }}",
+              "sha": "${{ github.sha }}"
+            }
