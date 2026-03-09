@@ -81,6 +81,15 @@ jobs:
             git subtree add --prefix="${SUBFOLDER}" "${REMOTE_URL}" main --squash -m "${MSG}"
           fi
 
+      - name: Remove unwanted files from subtree
+        env:
+          SUBFOLDER: ${{ steps.resolve.outputs.subfolder }}
+        run: |
+          rm -f "${SUBFOLDER}/README.md"
+          rm -f "${SUBFOLDER}/package.json"
+          rm -f "${SUBFOLDER}/package-lock.json"
+          rm -f "${SUBFOLDER}/options.json"
+          # Add any other files to exclude here
       - name: Push to parent repo
         env:
           GH_TOKEN: ${{ secrets.AGGREGATOR_PAT }}
