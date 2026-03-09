@@ -11,6 +11,4 @@
 # After that, all future pushes to that repo's main branch
 # will sync here automatically.
 
-YOUR_ORG/repo-name-1
-YOUR_ORG/repo-name-2
-YOUR_ORG/repo-name-3
+ryma2fhir/FHIR_IG_PATHOLOGY_TEST
