@@ -1,4 +1,4 @@
-# NHSE FHIR PRogrammes IG repo
+# NHSE FHIR Programmes IG repo
 
 This repo is the source for all FHIR assets to https://simplifier.net/nhs-england-programme-implementation-guides.
 
@@ -16,6 +16,7 @@ Due to validation confilcts with the programmes assets, along with read/write ac
 
 ## Create a New Package
 
+- update [package.json](https://github.com/ryma2fhir/FHIR_IG_BASE_TEST/blob/main/package.json) in Programmes repo
 - Create a bake file in Simplifier
 - add only the files you need to the bake command, see [https://simplifier.net/nhs-england-programme-implementation-guides/pathology-snapshot-with-draft](pathology-snapshot-with-draft) for an example. Note: only a single `- files:` can be added in a single block, if more than one needed use multiple blocks
 - test bake by pressing the green play button
@@ -25,3 +26,4 @@ Due to validation confilcts with the programmes assets, along with read/write ac
 
  See https://docs.fire.ly/projects/Simplifier/data_governance_and_quality_control/simplifierPackages.html#bake-pipeline for more details 
   
+
