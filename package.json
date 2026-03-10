@@ -1,0 +1,16 @@
+{
+  "name": "uk.nhsengland.r4",
+  "description": "NHS England Programme Implementation Guides",
+  "author": "nhsengland",
+  "version": "0.0.1",
+  "dependencies": {
+    "fhir.r4.ukcore.stu2": "2.0.2",
+    "hl7.terminology.r4": "7.0.1",
+    "hl7.fhir.uv.ips": "1.1.0",
+    "hl7.fhir.eu.base": "0.1.0"
+  },
+  "fhirVersions": [
+    "4.0.1"
+  ],
+  "jurisdiction": "urn:iso:std:iso:3166:-2:GB-ENG"
+}
